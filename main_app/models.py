@@ -13,7 +13,7 @@ class Book(models.Model):
 class Pizza(models.Model):
     name = models.CharField(max_length=255)
     pizza_type = models.CharField(max_length=255)
-    weight = models.IntegerField
+    weight = models.IntegerField()
     size= models.IntegerField()
 
     def __str__(self):

@@ -6,9 +6,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 
 from .models import Book
-from .serializers import BookSerializer, HWDataSerializer
+from .serializers import BookSerializer, HWDataSerializer, PizzaSerializer
 from rest_framework import viewsets
 from rest_framework.response import Response
+from .models import Pizza
 
 
 class BookViewSet(viewsets.ModelViewSet):
@@ -53,7 +54,7 @@ class PizzaCustomeViewSet(viewsets.ViewSet):
     def list(self, request):
         pizza = Pizza.objects.all()
         serializer = PizzaSerializer(pizza, many = True)
-        return Respoonse(serializer.data)
+        return Response(serializer.data)
     def retrieve(self, request, pk=None):
         try:
             pizza = Pizza.objects.get(pk=pk)

@@ -3,6 +3,7 @@ from rest_framework.routers import DefaultRouter
 
 from . import views
 from .views import BookViewSet, BookCustomViewSet, ActionViewSet, PizzaCustomeViewSet
+from .views import PizzaCustomeViewSet
 
 router = DefaultRouter()
 router.register('books', BookViewSet, basename='book')
