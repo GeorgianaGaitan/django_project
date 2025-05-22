@@ -17,6 +17,12 @@ urlpatterns = [
     # path("get_data", views.get_data, name="get_data"),
     # path("api/books", views.get_books, name="get_books"),
     # path("books", views.get_books_page, name="books_page")
-    path("", include(router.urls))
+    path("", include(router.urls)),
+    # path("main/", views.home, name="home"),
+    path('home/', views.home, name='home'),
+    path("books/add/", views.add_book, name="add_book"),
+    path("books/", views.my_books, name="my_books"),
+    path("books/delete/<>int:book_id/", views.delete_book, name="delete_book"),
+    path("books/confirm_delete/<>int:book_id/", confirm_delete, name="confirm_book")
 ]
 

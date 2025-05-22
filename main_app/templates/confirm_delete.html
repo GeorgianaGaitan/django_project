@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm DeLETE</title>
+</head>
+<body>
+    <h1> Are you sure?</H1>
+    <p>{{ book }}</p>
+    <form action="{% url 'delete_book' book.id %}" method="post" style="dispay:inline">
+    {% csrf_token  %}
+    <button tupe="submit">Delete</button>
+    <a href="{% url 'my_books' %}">cancel</a>
+    </form>
+
+</body>
+</html>

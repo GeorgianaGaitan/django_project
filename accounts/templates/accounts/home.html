@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina principală</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #4CAF50;
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .container {
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div>
+            <strong>MyApp</strong>
+        </div>
+        <div>
+            <a href="{% url 'home' %}">Acasă</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+            <!-- Aici poți adăuga și un buton de logout dacă îl implementezi -->
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Bine ai venit{{ request.user.is_authenticated|yesno:", " }}{{ request.user.username }}!</h1>
+        <p>Te-ai logat cu succes în aplicație.</p>
+    </div>
+
+</body>
+</html>
+``
