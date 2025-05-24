@@ -4,6 +4,7 @@ from rest_framework.routers import DefaultRouter
 from . import views
 from .views import BookViewSet, BookCustomViewSet, ActionViewSet, PizzaCustomeViewSet
 from .views import PizzaCustomeViewSet
+from .views import confirm_book
 
 router = DefaultRouter()
 router.register('books', BookViewSet, basename='book')
@@ -22,7 +23,10 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path("books/add/", views.add_book, name="add_book"),
     path("books/", views.my_books, name="my_books"),
-    path("books/delete/<>int:book_id/", views.delete_book, name="delete_book"),
-    path("books/confirm_delete/<>int:book_id/", confirm_delete, name="confirm_book")
+    path("books/delete/<int:book_id>/", views.delete_book, name="delete_book"),
+    path("books/confirm_delete/<int:book_id>/", confirm_book, name="confirm_book"),
+    path('users/', views.get_users, name='get_users'),
+    path('books/by_user/<int:user_id>/', views.books_by_user, name='books_by_user'),
+
 ]
 

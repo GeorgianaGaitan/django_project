@@ -1,0 +1,17 @@
+{% entends "base.html" %}
+{% block title %} My Books!
+{% block content %}
+    <title>All users</title>
+</head>
+<body>
+ <h2>All users on the platform:</h2>
+<ul>
+    {% for user in users  %}
+        <li>
+           <a href="{% url 'home'  %}">Cărțile utilizatorului</a>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
+{% endblock %}

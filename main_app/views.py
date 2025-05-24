@@ -1,5 +1,5 @@
 import json
-
+import datetime
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
@@ -12,7 +12,17 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from .models import Pizza
 from .forms import BookForm
+from django.contrib.auth import get_user_model
 
+
+def books_by_user(request, user_id):
+    # logica de filtrare după user_id
+    books = Book.objects.filter(user__id=user_id)
+    return render(request, 'books_by_user.html', {'books': books})
+
+def get_users(request):
+    users = get_user_model().objects.all()
+    return render(request, 'users.html', {'users': users})
 
 @login_required
 
