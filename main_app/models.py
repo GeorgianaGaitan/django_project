@@ -8,7 +8,7 @@ class Book(models.Model):
     page_count = models.IntegerField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
     # chapter_description =  models.JSONField()
-
+    content = models.CharField(max_length=255, null=False)
     def __str__(self):
         return "{} by {}, {} pages.".format(self.title, self.author, self.page_count)
 
@@ -20,3 +20,11 @@ class Pizza(models.Model):
 
     def __str__(self):
         return "{}{}{}{}".format(self.name,self.pizza_type,self.weight,self.size)
+
+class BookDetail(models.Model):
+    summary = models.TextField(blank=True)
+    published = models.DateField()
+    isbn = models.CharField(max_length=13)
+    book = models.OneToOneField(Book, on_delete=models.CASCADE, related_name='detail')
+
+

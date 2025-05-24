@@ -13,6 +13,8 @@ from rest_framework.response import Response
 from .models import Pizza
 from .forms import BookForm
 from django.contrib.auth import get_user_model
+from main_app import utils
+from .util import create_book_detail
 
 
 def books_by_user(request, user_id):
@@ -37,6 +39,9 @@ def add_book(request):
             book = form.save(commit=False)
             book.created_by = request.user
             book.save()
+            #BookDetail
+            create_book_detail(book)
+
             return(HttpResponse("Book added successfully"))
         else:
             return render(request, 'add_book.html', {'form': form})
@@ -82,7 +87,8 @@ class BookCustomViewSet(viewsets.ViewSet):
         # HTTP POST localhost:8000/custom_books/
         serializer = BookSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            book = serializer.save()
+            create_book_detail(serializer)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
