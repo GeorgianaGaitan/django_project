@@ -6,9 +6,9 @@
  </h1>
     {% if books  %}
     <ul>
-        {% for book in boo%}
+        {% for book in books %}
         <li>
-            {{ book }}
+            {{ book }}, {{ book.detail.isbn }} {{ book.detail.published }}
             <form action="{% url 'confirm_book' book.id %}" method="get" style="dispay:inline"></form>
                 {% csrf_token  %}
                 <button tupe="submit">Delete</button>

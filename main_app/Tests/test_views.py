@@ -11,7 +11,7 @@ from django.template.context_processors import request
 from django.test import Client
 from django.urls import reverse
 from main_app import models
-
+from main_app.models import BookDetail
 
 
 @pytest.fixture
@@ -109,9 +109,24 @@ def test_get_all_users(db, client:client.Client):
     url = "/users/"
     response = client.get(url)
     response = response.content.decode()
-    asssert "Ala" in response
-def test_get_books_by_user(db, client;Client, books, user):
+    assert "Ala" in response
+
+def test_get_books_by_user(db, client, Client, books, user):
     user_id = user.id
 
     url = "/users/{}/books/".format(user_id)
     response = response.content.decode()
+
+def test_book_detail_creation(client_logged_in, user):
+    url = "/books/add/"
+    book_dic = {
+        "title":"Test Created 4",
+        "author": "test creator3",
+        "page_count":303
+
+    }
+    response = client_logged_in.get(url, book_dic)
+    assert response.status_code == 200
+    assert "Book added" in response.content.decode()
+    assert len(Book.objects.all()) == 0
+    "]
