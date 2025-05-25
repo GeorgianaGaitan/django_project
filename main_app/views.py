@@ -14,7 +14,7 @@ from .models import Pizza
 from .forms import BookForm
 from django.contrib.auth import get_user_model
 from main_app import utils
-from .util import create_book_detail
+from .utils import create_book_detail
 
 
 def books_by_user(request, user_id):
