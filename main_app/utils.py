@@ -1,6 +1,5 @@
 #function to generate random isbn
 #function to create a summary for input text
-
 import random
 from main_app.models import Book, BookDetail
 from datetime import date
@@ -19,5 +18,4 @@ def create_book_detail(book:Book):
         summary = summarize_text(book.title),
         published_date = date.today(),
         isbn = generate_isbn(),
-        book = book)
 print(generate_isbn())
