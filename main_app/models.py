@@ -9,6 +9,9 @@ class Book(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
     # chapter_description =  models.JSONField()
     content = models.CharField(max_length=255, null=False)
+    image = models.ImageField(null=True, blank=True, upload_to='book_images/')
+
+
     def __str__(self):
         return "{} by {}, {} pages.".format(self.title, self.author, self.page_count)
 
